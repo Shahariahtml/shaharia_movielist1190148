@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies $ Videos</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff00cc, #333399);
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .app-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .app-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-details {
+            max-width: 70%;
+        }
+
+        .download-btn {
+            padding: 10px 20px;
+            background-color: #ff6600;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #cc5200;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Movies & Videos List</h1>
+        </header>
+        <div class="app-list" id="app-list">
+            <!-- App items will be dynamically generated here -->
+        </div>
+    </div>
+    <script>
+        const apps = [
+            { name: 'App/Game Name 1', description: 'Some description of the app or game.', downloadLink: 'link-to-apk-1' },
+            { name: 'App/Game Name 2', description: 'Some description of the app or game.', downloadLink: 'link-to-apk-2' },
+            { name: 'App/Game Name 3', description: 'Some description of the app or game.', downloadLink: 'link-to-apk-3' },
+            { name: 'App/Game Name 4', description: 'Some description of the app or game.', downloadLink: 'link-to-apk-4' },
+            { name: 'App/Game Name 5', description: 'Some description of the app or game.', downloadLink: 'link-to-apk-5' },
+            { name: 'App/Game Name 6', description: 'Some description of the app or game.', downloadLink: 'link-to-apk-6' },
+            { name: 'App/Game Name 7', description: 'Some description of the app or game.', downloadLink: 'link-to-apk-7' },
+            { name: 'App/Game Name 8', description: 'Some description of the app or game.', downloadLink: 'link-to-apk-8' }
+
+            // Add more app objects as needed
+        ];
+
+        function downloadApp(link) {
+            window.location.href = link;
+        }
+
+        function generateAppList() {
+            const appListContainer = document.getElementById('app-list');
+            apps.forEach(app => {
+                const appItem = document.createElement('div');
+                appItem.classList.add('app-item');
+
+                const appDetails = document.createElement('div');
+                appDetails.classList.add('app-details');
+
+                const appName = document.createElement('h2');
+                appName.textContent = app.name;
+
+                const appDescription = document.createElement('p');
+                appDescription.textContent = app.description;
+
+                const downloadButton = document.createElement('button');
+                downloadButton.classList.add('download-btn');
+                downloadButton.textContent = 'Download';
+                downloadButton.onclick = () => downloadApp(app.downloadLink);
+
+                appDetails.appendChild(appName);
+                appDetails.appendChild(appDescription);
+                appItem.appendChild(appDetails);
+                appItem.appendChild(downloadButton);
+
+                appListContainer.appendChild(appItem);
+            });
+        }
+
+        window.onload = generateAppList;
+    </script>
+</body>
+</html>
